@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Tamil Nadu Festivals — A cinematic digital experience celebrating the timeless traditions, festivals, and cultural heritage of Tamil Nadu. Where Every Festival Tells a Story." />
+  <meta name="keywords" content="Tamil Nadu, festivals, Pongal, Karthigai Deepam, Navaratri, Tamil culture, heritage, traditions" />
+  <meta property="og:title" content="Tamil Nadu Festivals — Where Every Festival Tells a Story" />
+  <meta property="og:description" content="A world-class cinematic journey through the festivals of Tamil Nadu." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://[your-username].github.io/where-every-festival-tells-a-story/" />
+  <title>Tamil Nadu Festivals — Where Every Festival Tells a Story</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600&family=Noto+Serif+Tamil:wght@400;700&display=swap" rel="stylesheet" />
+
+  <!-- GSAP & ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- CURSOR -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-trail" id="cursorTrail"></div>
+
+  <!-- LOADING SCREEN -->
+  <div class="loader" id="loader">
+    <div class="loader-inner">
+      <div class="loader-kolam">
+        <svg viewBox="0 0 200 200" class="kolam-svg">
+          <circle cx="100" cy="100" r="80" fill="none" stroke="#C8963E" stroke-width="0.5" stroke-dasharray="502" stroke-dashoffset="502" class="kolam-ring r1"/>
+          <circle cx="100" cy="100" r="60" fill="none" stroke="#C8963E" stroke-width="0.5" stroke-dasharray="377" stroke-dashoffset="377" class="kolam-ring r2"/>
+          <circle cx="100" cy="100" r="40" fill="none" stroke="#C8963E" stroke-width="0.5" stroke-dasharray="251" stroke-dashoffset="251" class="kolam-ring r3"/>
+          <circle cx="100" cy="100" r="20" fill="none" stroke="#C8963E" stroke-width="0.8" stroke-dasharray="126" stroke-dashoffset="126" class="kolam-ring r4"/>
+          <circle cx="100" cy="100" r="5" fill="#C8963E" opacity="0" class="kolam-dot"/>
+          <!-- Petals -->
+          <path d="M100 20 Q120 60 100 100 Q80 60 100 20" fill="none" stroke="#8B1A1A" stroke-width="0.5" opacity="0" class="kolam-petal"/>
+          <path d="M180 100 Q140 120 100 100 Q140 80 180 100" fill="none" stroke="#8B1A1A" stroke-width="0.5" opacity="0" class="kolam-petal"/>
+          <path d="M100 180 Q80 140 100 100 Q120 140 100 180" fill="none" stroke="#8B1A1A" stroke-width="0.5" opacity="0" class="kolam-petal"/>
+          <path d="M20 100 Q60 80 100 100 Q60 120 20 100" fill="none" stroke="#8B1A1A" stroke-width="0.5" opacity="0" class="kolam-petal"/>
+        </svg>
+      </div>
+      <p class="loader-text">தமிழ்நாடு</p>
+      <p class="loader-sub">Loading the Spirit of Tamil Nadu...</p>
+      <div class="loader-bar"><div class="loader-fill" id="loaderFill"></div></div>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <nav class="nav" id="mainNav">
+    <div class="nav-logo">
+      <span class="nav-logo-tamil">தமிழ்நாடு</span>
+      <span class="nav-logo-en">Tamil Nadu Festivals</span>
+    </div>
+    <div class="nav-links">
+      <a href="#spirit" class="nav-link">Spirit</a>
+      <a href="#pongal" class="nav-link">Pongal</a>
+      <a href="#deepam" class="nav-link">Deepam</a>
+      <a href="#navaratri" class="nav-link">Navaratri</a>
+      <a href="#deepavali" class="nav-link">Deepavali</a>
+      <a href="#explore" class="nav-link">Explore</a>
+    </div>
+    <button class="nav-menu-btn" id="menuBtn" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" id="menuClose">✕</button>
+    <nav class="mobile-nav">
+      <a href="#spirit" class="mobile-nav-link">The Spirit</a>
+      <a href="#pongal" class="mobile-nav-link">Pongal</a>
+      <a href="#new-year" class="mobile-nav-link">Tamil New Year</a>
+      <a href="#deepam" class="mobile-nav-link">Karthigai Deepam</a>
+      <a href="#navaratri" class="mobile-nav-link">Navaratri</a>
+      <a href="#deepavali" class="mobile-nav-link">Deepavali</a>
+      <a href="#chithirai" class="mobile-nav-link">Chithirai</a>
+      <a href="#explore" class="mobile-nav-link">Explore More</a>
+    </nav>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <canvas id="heroCanvas"></canvas>
+    <div class="hero-particles" id="heroParticles"></div>
+
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <span class="hero-line"></span>
+        <span>Tamil Nadu · தமிழ்நாடு</span>
+        <span class="hero-line"></span>
+      </div>
+      <h1 class="hero-title">
+        <span class="hero-title-line" data-line="1">Where Every</span>
+        <span class="hero-title-line hero-title-accent" data-line="2">Festival</span>
+        <span class="hero-title-line" data-line="3">Tells a Story.</span>
+      </h1>
+      <p class="hero-tagline">Thousands of Years. Millions of Hearts. One Culture.</p>
+      <div class="hero-cta">
+        <button class="btn-primary" onclick="document.getElementById('spirit').scrollIntoView({behavior:'smooth'})">Begin the Journey</button>
+        <div class="hero-scroll-hint">
+          <div class="scroll-wheel">
+            <div class="scroll-dot"></div>
+          </div>
+          <span>Scroll to explore</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Floating cultural symbols -->
+    <div class="hero-float-symbols">
+      <div class="float-sym s1">🪔</div>
+      <div class="float-sym s2">🌺</div>
+      <div class="float-sym s3">⭐</div>
+      <div class="float-sym s4">🌸</div>
+      <div class="float-sym s5">✨</div>
+    </div>
+
+    <!-- Temple silhouette -->
+    <div class="hero-temple">
+      <svg viewBox="0 0 1440 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <linearGradient id="templeGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#8B1A1A" stop-opacity="0.8"/>
+            <stop offset="100%" stop-color="#0D0A06" stop-opacity="1"/>
+          </linearGradient>
+        </defs>
+        <!-- Main gopuram -->
+        <polygon points="720,10 780,150 820,200 840,400 600,400 620,200 660,150" fill="url(#templeGrad)"/>
+        <!-- Left tower -->
+        <polygon points="400,60 440,150 460,200 475,400 325,400 340,200 360,150" fill="url(#templeGrad)" opacity="0.7"/>
+        <!-- Right tower -->
+        <polygon points="1040,60 1080,150 1100,200 1115,400 965,400 980,200 1000,150" fill="url(#templeGrad)" opacity="0.7"/>
+        <!-- Base platform -->
+        <rect x="200" y="370" width="1040" height="30" fill="url(#templeGrad)"/>
+        <!-- Decorative tiers on main gopuram -->
+        <rect x="680" y="60" width="80" height="8" rx="2" fill="#C8963E" opacity="0.3"/>
+        <rect x="670" y="90" width="100" height="8" rx="2" fill="#C8963E" opacity="0.3"/>
+        <rect x="655" y="120" width="130" height="8" rx="2" fill="#C8963E" opacity="0.3"/>
+        <rect x="640" y="150" width="160" height="8" rx="2" fill="#C8963E" opacity="0.3"/>
+        <!-- Window-like arches -->
+        <ellipse cx="720" cy="180" rx="15" ry="20" fill="#C8963E" opacity="0.2"/>
+        <ellipse cx="720" cy="230" rx="12" ry="16" fill="#C8963E" opacity="0.15"/>
+        <!-- Flag on top -->
+        <line x1="720" y1="10" x2="720" y2="0" stroke="#C8963E" stroke-width="2"/>
+        <polygon points="720,0 740,5 720,10" fill="#8B1A1A"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- CHAPTER 1: SPIRIT OF TAMIL NADU -->
+  <section class="chapter spirit-section" id="spirit">
+    <div class="chapter-number">01</div>
+    <div class="container">
+      <div class="chapter-intro">
+        <span class="chapter-tag">The Beginning</span>
+        <h2 class="chapter-title">The Spirit of<br/><em>Tamil Nadu</em></h2>
+        <p class="chapter-lead">One of the world's oldest living civilisations. A land where rivers flow with stories, where temples speak in stone, and where every season is a festival.</p>
+      </div>
+
+      <div class="spirit-grid">
+        <div class="spirit-card" data-reveal>
+          <div class="spirit-card-icon">🏛️</div>
+          <h3>5000+ Years</h3>
+          <p>of uninterrupted civilisation along the banks of the Kaveri, Vaigai, and Tamirabarani rivers.</p>
+        </div>
+        <div class="spirit-card" data-reveal>
+          <div class="spirit-card-icon">📜</div>
+          <h3>World's Oldest Language</h3>
+          <p>Tamil — a classical language older than Latin, still spoken by 80 million people today.</p>
+        </div>
+        <div class="spirit-card" data-reveal>
+          <div class="spirit-card-icon">🎭</div>
+          <h3>30,000+ Temples</h3>
+          <p>Each temple a living museum — of art, architecture, music, dance, and devotion.</p>
+        </div>
+        <div class="spirit-card" data-reveal>
+          <div class="spirit-card-icon">🌾</div>
+          <h3>Agricultural Soul</h3>
+          <p>Most Tamil festivals are born from the land — celebrating harvests, rains, and seasons.</p>
+        </div>
+      </div>
+
+      <div class="spirit-quote" data-reveal>
+        <blockquote>
+          <span class="quote-tamil">யாதும் ஊரே யாவரும் கேளிர்</span>
+          <span class="quote-english">"Every place is my hometown. Every person is my kin."</span>
+          <cite>— Kaniyan Pungundranar, Sangam Era Poet (2000+ years ago)</cite>
+        </blockquote>
+      </div>
+
+      <div class="timeline" data-reveal>
+        <div class="timeline-title">Cultural Timeline</div>
+        <div class="timeline-track">
+          <div class="timeline-item">
+            <div class="tl-dot"></div>
+            <div class="tl-year">3000 BCE</div>
+            <div class="tl-event">Sangam Age — earliest Tamil literature</div>
+          </div>
+          <div class="timeline-item">
+            <div class="tl-dot"></div>
+            <div class="tl-year">300 BCE</div>
+            <div class="tl-event">Thirukkural composed — ethics for all humanity</div>
+          </div>
+          <div class="timeline-item">
+            <div class="tl-dot"></div>
+            <div class="tl-year">7th Century</div>
+            <div class="tl-event">Bhakti movement — devotional poetry flourishes</div>
+          </div>
+          <div class="timeline-item">
+            <div class="tl-dot"></div>
+            <div class="tl-year">Pongal</div>
+            <div class="tl-event">Harvest festival — celebrated across 2,000+ years</div>
+          </div>
+          <div class="timeline-item">
+            <div class="tl-dot"></div>
+            <div class="tl-year">Today</div>
+            <div class="tl-event">Living culture — festivals alive as ever</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHAPTER 2: PONGAL -->
+  <section class="chapter pongal-section" id="pongal">
+    <div class="chapter-number">02</div>
+    <div class="pongal-bg-art"></div>
+
+    <div class="container">
+      <div class="chapter-intro centered">
+        <span class="chapter-tag" style="--tag-color:#E8A020">January · Thai Month</span>
+        <h2 class="chapter-title">
+          <span class="tamil-heading">பொங்கல்</span>
+          <span>Pongal</span>
+        </h2>
+        <p class="chapter-lead">"Let it overflow." — When the harvest comes home, Tamil hearts overflow with gratitude to the Sun God, to the cattle, and to the earth itself.</p>
+      </div>
+
+      <div class="pongal-story">
+        <div class="story-block" data-reveal>
+          <div class="story-visual pongal-pot-anim" id="pongalPot">
+            <div class="pot-body">
+              <div class="pot-steam s1"></div>
+              <div class="pot-steam s2"></div>
+              <div class="pot-steam s3"></div>
+              <div class="pot-overflow" id="potOverflow"></div>
+              <div class="pot-content">
+                <div class="pot-milk" id="potMilk"></div>
+              </div>
+              <div class="pot-highlight"></div>
+            </div>
+            <div class="pot-base"></div>
+            <div class="pot-sugarcane">
+              <div class="cane c1">🎋</div>
+              <div class="cane c2">🎋</div>
+            </div>
+            <div class="pot-flowers">🌸🌼🌸</div>
+            <button class="pot-btn" id="pongalBtn">Celebrate Pongal!</button>
+          </div>
+          <div class="story-text">
+            <h3>The Festival of Harvest</h3>
+            <p>Every January, as the sun begins its northward journey, Tamil Nadu awakens to the most beloved festival of the year. Pongal is not just a harvest festival — it is a profound expression of gratitude.</p>
+            <div class="story-fact">
+              <span class="fact-icon">🌞</span>
+              <span>Celebrated during Thai Pongal — the Tamil month of Thai (Jan–Feb), marking Uttarayan — the sun's northward journey</span>
+            </div>
+            <div class="story-fact">
+              <span class="fact-icon">🌾</span>
+              <span>The word "Pongal" means "to boil and overflow" — symbolising abundance and prosperity</span>
+            </div>
+            <div class="story-fact">
+              <span class="fact-icon">🐄</span>
+              <span>Mattu Pongal honours the cattle — the backbone of Tamil agriculture</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pongal-days" data-reveal>
+          <h3 class="days-title">Four Days of Celebration</h3>
+          <div class="days-grid">
+            <div class="day-card">
+              <div class="day-num">Day 1</div>
+              <div class="day-name">Bhogi Pongal</div>
+              <p>The old is discarded. Bonfires are lit. A new chapter begins.</p>
+            </div>
+            <div class="day-card active">
+              <div class="day-num">Day 2</div>
+              <div class="day-name">Thai Pongal</div>
+              <p>Rice is cooked in clay pots. When it overflows — "Pongalo Pongal!" fills the air.</p>
+            </div>
+            <div class="day-card">
+              <div class="day-num">Day 3</div>
+              <div class="day-name">Mattu Pongal</div>
+              <p>Cattle are honoured, decorated with bells and flowers — our eternal farming partners.</p>
+            </div>
+            <div class="day-card">
+              <div class="day-num">Day 4</div>
+              <div class="day-name">Kaanum Pongal</div>
+              <p>Families reunite. Brothers pray for their sisters. The harvest celebration concludes.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="pongal-quote" data-reveal>
+          <p>"Before the harvest arrives,<br/><strong>hope arrives first."</strong></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHAPTER 3: TAMIL NEW YEAR -->
+  <section class="chapter newyear-section" id="new-year">
+    <div class="chapter-number">03</div>
+    <div class="container">
+      <div class="chapter-intro">
+        <span class="chapter-tag" style="--tag-color:#E84040">April · Chithirai Month</span>
+        <h2 class="chapter-title">
+          <span class="tamil-heading">தமிழ் புத்தாண்டு</span>
+          <span>Tamil New Year</span>
+        </h2>
+        <p class="chapter-lead">As mango blossoms fill the air and kolam patterns glow at doorsteps, Tamil Nadu welcomes a new year with blessings, feasts, and ancient rituals.</p>
+      </div>
+
+      <div class="newyear-grid" data-reveal>
+        <div class="ny-visual">
+          <div class="ny-kolam" id="nyKolam">
+            <svg viewBox="0 0 300 300" class="kolam-anim-svg">
+              <defs>
+                <radialGradient id="kolGrad">
+                  <stop offset="0%" stop-color="#E8A020"/>
+                  <stop offset="100%" stop-color="#8B1A1A"/>
+                </radialGradient>
+              </defs>
+              <!-- Kolam pattern — dots and lines -->
+              <g class="kolam-group">
+                <circle cx="150" cy="150" r="4" fill="#E8A020"/>
+                <circle cx="130" cy="150" r="3" fill="#C8963E"/>
+                <circle cx="170" cy="150" r="3" fill="#C8963E"/>
+                <circle cx="150" cy="130" r="3" fill="#C8963E"/>
+                <circle cx="150" cy="170" r="3" fill="#C8963E"/>
+                <circle cx="120" cy="130" r="2.5" fill="#8B1A1A"/>
+                <circle cx="180" cy="130" r="2.5" fill="#8B1A1A"/>
+                <circle cx="120" cy="170" r="2.5" fill="#8B1A1A"/>
+                <circle cx="180" cy="170" r="2.5" fill="#8B1A1A"/>
+                <!-- Connecting lines -->
+                <path d="M150,80 Q200,120 200,150 Q200,180 150,220 Q100,180 100,150 Q100,120 150,80" fill="none" stroke="#C8963E" stroke-width="1.5" stroke-dasharray="200" stroke-dashoffset="200" class="kline kl1"/>
+                <path d="M150,100 Q185,130 185,150 Q185,170 150,200 Q115,170 115,150 Q115,130 150,100" fill="none" stroke="#E8A020" stroke-width="1" stroke-dasharray="160" stroke-dashoffset="160" class="kline kl2"/>
+                <path d="M100,100 L200,100 L200,200 L100,200 Z" fill="none" stroke="#8B1A1A" stroke-width="0.8" stroke-dasharray="400" stroke-dashoffset="400" class="kline kl3"/>
+                <path d="M130,80 L170,80 L190,100 L210,150 L190,200 L170,220 L130,220 L110,200 L90,150 L110,100 Z" fill="none" stroke="#C8963E" stroke-width="0.6" stroke-dasharray="500" stroke-dashoffset="500" class="kline kl4"/>
+                <!-- Flower motif center -->
+                <path d="M150,135 Q160,142 155,155 Q145,162 140,155 Q135,142 145,135 Z" fill="#E8A020" opacity="0.6"/>
+                <path d="M150,165 Q140,158 145,145 Q155,138 160,145 Q165,158 155,165 Z" fill="#E8A020" opacity="0.6"/>
+                <path d="M135,150 Q142,140 155,145 Q162,155 155,162 Q142,167 135,160 Z" fill="#C8963E" opacity="0.5"/>
+                <path d="M165,150 Q158,160 145,155 Q138,145 145,138 Q158,133 165,140 Z" fill="#C8963E" opacity="0.5"/>
+              </g>
+            </svg>
+          </div>
+          <p class="ny-kolam-label">Kolam — drawn at dawn, welcoming the new year</p>
+        </div>
+
+        <div class="ny-content">
+          <div class="ny-tradition" data-reveal>
+            <h3>Kani — The Auspicious Sight</h3>
+            <p>The first sight of the new year morning — an arrangement of fruits, flowers, a mirror, gold jewellery, and the sacred Thiruvannamalai lamp. What you see first on Tamil New Year's Day shapes the year ahead.</p>
+          </div>
+          <div class="ny-items">
+            <div class="ny-item">🥭 Raw mango</div>
+            <div class="ny-item">🌼 Golden flowers</div>
+            <div class="ny-item">🪔 Oil lamp</div>
+            <div class="ny-item">📿 Gold jewels</div>
+            <div class="ny-item">🍚 New rice</div>
+            <div class="ny-item">🌿 Neem leaves</div>
+          </div>
+          <div class="ny-quote" data-reveal>
+            <p>"Life is like neem — sometimes bitter, sometimes sweet. Taste it all with a grateful heart."</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHAPTER 4: KARTHIGAI DEEPAM -->
+  <section class="chapter deepam-section" id="deepam">
+    <div class="chapter-number">04</div>
+    <canvas id="deepamCanvas"></canvas>
+    <div class="deepam-overlay"></div>
+
+    <div class="container deepam-content">
+      <div class="chapter-intro centered">
+        <span class="chapter-tag" style="--tag-color:#FF8C00">November · Karthigai Month</span>
+        <h2 class="chapter-title glow-text">
+          <span class="tamil-heading">கார்த்திகை தீபம்</span>
+          <span>Karthigai Deepam</span>
+        </h2>
+        <p class="chapter-lead">A million flames. One truth. The Festival of Lights that predates Deepavali — when the sacred flame atop Thiruvannamalai hill unites all of Tamil Nadu in a single moment of divine light.</p>
+      </div>
+
+      <div class="lamps-grid" id="lampsGrid" data-reveal>
+        <!-- Lamps generated by JS -->
+      </div>
+
+      <div class="deepam-story" data-reveal>
+        <div class="ds-card">
+          <h3>🔥 The Sacred Flame</h3>
+          <p>On the night of Karthigai Deepam, a massive beacon is lit atop Annamalai hill in Thiruvannamalai. It is visible for miles. The flame represents Lord Shiva as infinite light — the flame of consciousness that has no beginning and no end.</p>
+        </div>
+        <div class="ds-card">
+          <h3>🪔 The Household Tradition</h3>
+          <p>Every Tamil home arranges rows and rows of clay lamps in the courtyard and on every surface. The sight is breathtaking — as if the stars have descended to earth. Children carry lamps. Grandmothers sing hymns. The whole neighbourhood glows.</p>
+        </div>
+        <div class="ds-card">
+          <h3>✨ Older Than Memory</h3>
+          <p>Karthigai Deepam is perhaps the oldest light festival in India. References to it appear in Sangam literature — poems written 2,000+ years ago describe the lamps of Karthigai as though they were as ancient as the stars themselves.</p>
+        </div>
+      </div>
+
+      <div class="deepam-quote" data-reveal>
+        <p>"The lamp does not speak.<br/><strong>Yet it teaches us to shine."</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHAPTER 5: NAVARATRI -->
+  <section class="chapter navaratri-section" id="navaratri">
+    <div class="chapter-number">05</div>
+    <div class="container">
+      <div class="chapter-intro">
+        <span class="chapter-tag" style="--tag-color:#9B59B6">October · Nine Nights</span>
+        <h2 class="chapter-title">
+          <span class="tamil-heading">நவராத்திரி</span>
+          <span>Navaratri</span>
+        </h2>
+        <p class="chapter-lead">For nine nights, Tamil homes become living art galleries. The Golu — an elaborate arrangement of dolls on stepped platforms — transforms every household into a miniature universe of stories.</p>
+      </div>
+
+      <div class="golu-stage" data-reveal>
+        <div class="golu-steps">
+          <div class="golu-step step-9">
+            <div class="golu-dolls">
+              <div class="golu-doll" title="Saraswati — Goddess of Knowledge">🌸</div>
+            </div>
+          </div>
+          <div class="golu-step step-7">
+            <div class="golu-dolls">
+              <div class="golu-doll" title="Lakshmi — Goddess of Wealth">🌼</div>
+              <div class="golu-doll" title="Parvati — Goddess of Strength">🌺</div>
+            </div>
+          </div>
+          <div class="golu-step step-5">
+            <div class="golu-dolls">
+              <div class="golu-doll" title="Village scenes">🏡</div>
+              <div class="golu-doll" title="Farmers">👨‍🌾</div>
+              <div class="golu-doll" title="Musicians">🎵</div>
+            </div>
+          </div>
+          <div class="golu-step step-3">
+            <div class="golu-dolls">
+              <div class="golu-doll">🐘</div>
+              <div class="golu-doll">🦚</div>
+              <div class="golu-doll">🌴</div>
+              <div class="golu-doll">⭐</div>
+            </div>
+          </div>
+          <div class="golu-step step-1">
+            <div class="golu-dolls">
+              <div class="golu-doll">🪔</div>
+              <div class="golu-doll">🌺</div>
+              <div class="golu-doll">🪔</div>
+              <div class="golu-doll">🌺</div>
+              <div class="golu-doll">🪔</div>
+            </div>
+          </div>
+        </div>
+        <p class="golu-label">The Golu — Nine steps, representing the nine nights of Navaratri</p>
+      </div>
+
+      <div class="navaratri-story" data-reveal>
+        <div class="nv-card">
+          <h3>Kolu Tradition</h3>
+          <p>Families bring out their prized collection of clay dolls — some passed down for generations. Each set of steps (always odd-numbered) tells a story of mythology, nature, and everyday Tamil life.</p>
+        </div>
+        <div class="nv-card">
+          <h3>Women at the Centre</h3>
+          <p>Navaratri in Tamil Nadu is a festival led by women. Neighbours visit each other's Golu, exchange sundal (a savoury snack), and sing traditional songs. The festival strengthens community bonds.</p>
+        </div>
+        <div class="nv-card">
+          <h3>Victory of Light</h3>
+          <p>The tenth day — Vijayadasami — is considered the most auspicious day to begin new ventures, education, or learning a skill. Children are formally introduced to learning on this day.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHAPTER 6: DEEPAVALI -->
+  <section class="chapter deepavali-section" id="deepavali">
+    <div class="chapter-number">06</div>
+    <canvas id="deepavaliCanvas"></canvas>
+
+    <div class="container">
+      <div class="chapter-intro centered">
+        <span class="chapter-tag" style="--tag-color:#FFD700">October / November</span>
+        <h2 class="chapter-title glow-text">
+          <span class="tamil-heading">தீபாவளி</span>
+          <span>Deepavali</span>
+        </h2>
+        <p class="chapter-lead">Darkness flees. Every home is lit. Every street alive. The festival of lights arrives — but in Tamil Nadu, it carries a uniquely intimate story: the defeat of the demon Narakasura at dawn.</p>
+      </div>
+
+      <div class="deepavali-grid" data-reveal>
+        <div class="dv-feature">
+          <h3>🌅 The 4 AM Awakening</h3>
+          <p>Unlike anywhere else in India, Tamil families wake up before dawn for Deepavali. An oil bath, new clothes, and the lighting of the first cracker before sunrise — marking the moment Lord Krishna defeated Narakasura.</p>
+        </div>
+        <div class="dv-feature">
+          <h3>🍬 The Sweet Language</h3>
+          <p>Murukku, Ladoo, Halwa, Mysore Pak, Adhirasam — Tamil sweets exchanged between neighbours are acts of love as old as the festival itself.</p>
+        </div>
+        <div class="dv-feature">
+          <h3>👕 New Clothes, New Beginnings</h3>
+          <p>Wearing new clothes on Deepavali morning is not optional — it's an expression of renewal, of casting off the old and welcoming the new, like the light after darkness.</p>
+        </div>
+        <div class="dv-feature">
+          <h3>🤝 Beyond Religion</h3>
+          <p>In Tamil Nadu, Deepavali is celebrated by people of all faiths — a testament to the inclusive nature of Tamil culture, where festivals belong to everyone.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHAPTER 7: CHITHIRAI FESTIVAL -->
+  <section class="chapter chithirai-section" id="chithirai">
+    <div class="chapter-number">07</div>
+    <div class="container">
+      <div class="chapter-intro">
+        <span class="chapter-tag" style="--tag-color:#C0392B">April · Madurai</span>
+        <h2 class="chapter-title">
+          <span class="tamil-heading">சித்திரை திருவிழா</span>
+          <span>Chithirai Festival</span>
+        </h2>
+        <p class="chapter-lead">In the ancient city of Madurai, the grandest festival in Tamil Nadu unfolds. The wedding of Goddess Meenakshi to Lord Sundareswarar — a celestial event celebrated on earth for 12 magnificent days.</p>
+      </div>
+
+      <div class="chithirai-visual" data-reveal>
+        <div class="madurai-temple">
+          <svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="maduraiGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#8B1A1A"/>
+                <stop offset="100%" stop-color="#C8963E"/>
+              </linearGradient>
+            </defs>
+            <!-- Meenakshi Temple representation -->
+            <rect x="0" y="250" width="600" height="50" fill="#1a0a00"/>
+            <!-- Central gopuram -->
+            <polygon points="300,10 360,120 390,180 400,250 200,250 210,180 240,120" fill="url(#maduraiGrad)"/>
+            <!-- Tier decorations -->
+            <rect x="265" y="30" width="70" height="6" rx="1" fill="#C8963E" opacity="0.4"/>
+            <rect x="258" y="50" width="84" height="6" rx="1" fill="#C8963E" opacity="0.4"/>
+            <rect x="252" y="70" width="96" height="6" rx="1" fill="#C8963E" opacity="0.4"/>
+            <rect x="246" y="90" width="108" height="6" rx="1" fill="#C8963E" opacity="0.35"/>
+            <rect x="240" y="110" width="120" height="6" rx="1" fill="#C8963E" opacity="0.35"/>
+            <rect x="234" y="130" width="132" height="6" rx="1" fill="#C8963E" opacity="0.3"/>
+            <!-- Left gopuram -->
+            <polygon points="100,50 140,130 160,180 168,250 40,250 48,180 68,130" fill="url(#maduraiGrad)" opacity="0.75"/>
+            <!-- Right gopuram -->
+            <polygon points="500,50 540,130 560,180 568,250 440,250 448,180 468,130" fill="url(#maduraiGrad)" opacity="0.75"/>
+            <!-- Connecting walls -->
+            <rect x="168" y="220" width="130" height="30" fill="#2d1500"/>
+            <rect x="300" y="220" width="140" height="30" fill="#2d1500"/>
+            <!-- Golden flag -->
+            <line x1="300" y1="10" x2="300" y2="0" stroke="#C8963E" stroke-width="2"/>
+            <polygon points="300,0 320,6 300,12" fill="#E8A020"/>
+            <!-- Torches / lights -->
+            <circle cx="200" cy="245" r="4" fill="#FF8C00" opacity="0.8" class="lamp-glow"/>
+            <circle cx="220" cy="245" r="4" fill="#FF8C00" opacity="0.8" class="lamp-glow"/>
+            <circle cx="380" cy="245" r="4" fill="#FF8C00" opacity="0.8" class="lamp-glow"/>
+            <circle cx="400" cy="245" r="4" fill="#FF8C00" opacity="0.8" class="lamp-glow"/>
+          </svg>
+          <p class="madurai-label">Meenakshi Amman Temple — Madurai</p>
+        </div>
+      </div>
+
+      <div class="chithirai-facts" data-reveal>
+        <div class="cf-item">
+          <span class="cf-num">12</span>
+          <span class="cf-text">days of celebration</span>
+        </div>
+        <div class="cf-item">
+          <span class="cf-num">1M+</span>
+          <span class="cf-text">visitors annually</span>
+        </div>
+        <div class="cf-item">
+          <span class="cf-num">2500+</span>
+          <span class="cf-text">years of tradition</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHAPTER 8: EXPLORE MORE -->
+  <section class="chapter explore-section" id="explore">
+    <div class="chapter-number">08</div>
+    <div class="container">
+      <div class="chapter-intro centered">
+        <span class="chapter-tag" style="--tag-color:#2ECC71">Year-Round</span>
+        <h2 class="chapter-title">More Festivals<br/>to Discover</h2>
+        <p class="chapter-lead">The calendar of Tamil Nadu is a festival in itself — every month, every season brings its own celebration. Here are some hidden gems.</p>
+      </div>
+
+      <div class="explore-grid" data-reveal>
+        <div class="explore-card" data-festival="thaipusam">
+          <div class="ec-header">
+            <span class="ec-icon">🕉️</span>
+            <span class="ec-month">January–February</span>
+          </div>
+          <h3>Thaipusam</h3>
+          <p>A festival of intense devotion to Lord Murugan. Devotees carry ornate kavadi (arched structures) as an act of penance and faith. The sight is both awe-inspiring and deeply moving.</p>
+          <div class="ec-tag">Devotion · Kavadi · Murugan</div>
+        </div>
+
+        <div class="explore-card" data-festival="aadi">
+          <div class="ec-header">
+            <span class="ec-icon">🌊</span>
+            <span class="ec-month">July–August</span>
+          </div>
+          <h3>Aadi Perukku</h3>
+          <p>Celebrated on the 18th day of the Tamil month Aadi, this festival honours the rivers of Tamil Nadu — especially the Kaveri. Women offer prayers at riverbanks as the monsoon swells the rivers.</p>
+          <div class="ec-tag">Rivers · Monsoon · Nature</div>
+        </div>
+
+        <div class="explore-card" data-festival="panguni">
+          <div class="ec-header">
+            <span class="ec-icon">🌺</span>
+            <span class="ec-month">March–April</span>
+          </div>
+          <h3>Panguni Uthiram</h3>
+          <p>The festival when divine unions are celebrated — the celestial wedding season. Temple chariots roll through the streets in grand processions known as Ther Thiruvizha.</p>
+          <div class="ec-tag">Procession · Temples · Union</div>
+        </div>
+
+        <div class="explore-card" data-festival="thai-pongal">
+          <div class="ec-header">
+            <span class="ec-icon">🥁</span>
+            <span class="ec-month">Village Festivals</span>
+          </div>
+          <h3>Gramadeivam</h3>
+          <p>Village deity festivals — the soul of rural Tamil culture. Each village's guardian deity is honoured with unique rituals, folk music, and drama that varies from village to village.</p>
+          <div class="ec-tag">Village · Folk · Guardian Deity</div>
+        </div>
+
+        <div class="explore-card" data-festival="float">
+          <div class="ec-header">
+            <span class="ec-icon">🏮</span>
+            <span class="ec-month">January</span>
+          </div>
+          <h3>Float Festival</h3>
+          <p>At the Mariamman Teppakulam in Madurai, temple deities float on elaborately decorated rafts lit with thousands of lamps. The reflection on the sacred tank is a vision of pure magic.</p>
+          <div class="ec-tag">Madurai · Float · Night Festival</div>
+        </div>
+
+        <div class="explore-card" data-festival="jallikattu">
+          <div class="ec-header">
+            <span class="ec-icon">🐂</span>
+            <span class="ec-month">January</span>
+          </div>
+          <h3>Jallikattu</h3>
+          <p>The ancient bull-taming sport of Tamil Nadu — a 2,500-year-old tradition that celebrates the bond between Tamil people and native cattle breeds, particularly the magnificent Kangeyam bull.</p>
+          <div class="ec-tag">Heritage · Bull Taming · Pongal</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CULTURAL MAP SECTION -->
+  <section class="map-section" id="cultural-map">
+    <div class="container">
+      <div class="chapter-intro centered">
+        <h2 class="chapter-title">Festival Map of<br/><em>Tamil Nadu</em></h2>
+        <p class="chapter-lead">Every district, every city — a unique festival story waiting to be discovered.</p>
+      </div>
+      <div class="tn-map-wrapper" data-reveal>
+        <div class="map-points">
+          <div class="map-point" style="top:20%; left:45%" data-city="Chennai">
+            <div class="mp-dot"></div>
+            <div class="mp-label">Chennai<br/><small>Kapaleeshwarar Temple Festival</small></div>
+          </div>
+          <div class="map-point" style="top:55%; left:40%" data-city="Madurai">
+            <div class="mp-dot"></div>
+            <div class="mp-label">Madurai<br/><small>Chithirai Festival</small></div>
+          </div>
+          <div class="map-point" style="top:35%; left:35%" data-city="Thanjavur">
+            <div class="mp-dot"></div>
+            <div class="mp-label">Thanjavur<br/><small>Brihadeeswarar Temple Festival</small></div>
+          </div>
+          <div class="map-point" style="top:15%; left:30%" data-city="Tiruvannamalai">
+            <div class="mp-dot"></div>
+            <div class="mp-label">Tiruvannamalai<br/><small>Karthigai Deepam</small></div>
+          </div>
+          <div class="map-point" style="top:65%; left:50%" data-city="Rameswaram">
+            <div class="mp-dot"></div>
+            <div class="mp-label">Rameswaram<br/><small>Sacred Pilgrimage</small></div>
+          </div>
+          <div class="map-point" style="top:45%; left:55%" data-city="Kumbakonam">
+            <div class="mp-dot"></div>
+            <div class="mp-label">Kumbakonam<br/><small>Mahamaham Festival</small></div>
+          </div>
+        </div>
+        <div class="map-bg">
+          <svg viewBox="0 0 400 600" xmlns="http://www.w3.org/2000/svg" class="tn-svg">
+            <defs>
+              <linearGradient id="mapGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#2d1500"/>
+                <stop offset="100%" stop-color="#1a0a00"/>
+              </linearGradient>
+              <filter id="mapGlow">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
+                <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+              </filter>
+            </defs>
+            <!-- Simplified Tamil Nadu silhouette -->
+            <path d="M200,20 L280,40 L350,100 L370,180 L360,260 L320,340 L280,400 L240,450 L200,480 L180,500 L160,480 L140,440 L120,380 L100,300 L80,220 L100,140 L140,80 Z" 
+              fill="url(#mapGrad)" stroke="#C8963E" stroke-width="1.5" filter="url(#mapGlow)"/>
+            <!-- Decorative grid lines -->
+            <line x1="80" y1="200" x2="370" y2="200" stroke="#C8963E" stroke-width="0.3" stroke-dasharray="4,6" opacity="0.3"/>
+            <line x1="80" y1="300" x2="360" y2="300" stroke="#C8963E" stroke-width="0.3" stroke-dasharray="4,6" opacity="0.3"/>
+            <line x1="80" y1="400" x2="300" y2="400" stroke="#C8963E" stroke-width="0.3" stroke-dasharray="4,6" opacity="0.3"/>
+            <line x1="200" y1="20" x2="200" y2="500" stroke="#C8963E" stroke-width="0.3" stroke-dasharray="4,6" opacity="0.3"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSING -->
+  <section class="closing-section">
+    <div class="closing-particles" id="closingParticles"></div>
+    <div class="container">
+      <div class="closing-content" data-reveal>
+        <span class="closing-eyebrow">The Journey Continues</span>
+        <h2 class="closing-title">
+          Tamil Nadu is not just<br/>
+          a place on the map —<br/>
+          <em>it is a feeling.</em>
+        </h2>
+        <p class="closing-body">A civilisation that turned every season into a song, every harvest into a prayer, every light into a story. These festivals are not history — they are alive, they are now, they are yours to explore.</p>
+
+        <div class="closing-quote">
+          <p>"Thousands of Years.<br/>Millions of Hearts.<br/><strong>One Culture."</strong></p>
+        </div>
+
+        <div class="closing-links">
+          <a href="#hero" class="btn-primary" onclick="event.preventDefault(); window.scrollTo({top:0, behavior:'smooth'})">Back to the Beginning</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <span class="footer-tamil">தமிழ்நாடு</span>
+          <p>Tamil Nadu Festivals</p>
+          <p class="footer-tagline">Where Every Festival Tells a Story.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Festivals</h4>
+          <a href="#pongal">Pongal</a>
+          <a href="#new-year">Tamil New Year</a>
+          <a href="#deepam">Karthigai Deepam</a>
+          <a href="#navaratri">Navaratri</a>
+          <a href="#deepavali">Deepavali</a>
+          <a href="#chithirai">Chithirai</a>
+        </div>
+        <div class="footer-links">
+          <h4>Explore</h4>
+          <a href="#explore">Rare Festivals</a>
+          <a href="#cultural-map">Festival Map</a>
+          <a href="#spirit">Tamil Spirit</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>Crafted with pride for Tamil culture. A digital heritage experience.</p>
+        <p class="footer-copy">© 2025 Tamil Nadu Festivals. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Confetti container -->
+  <div class="confetti-container" id="confettiContainer"></div>
+
+  <!-- Pongal celebration modal -->
+  <div class="pongal-modal" id="pongalModal">
+    <div class="pm-content">
+      <div class="pm-text">பொங்கலோ பொங்கல்! 🎉</div>
+      <div class="pm-sub">Pongalo Pongal! May your life overflow with joy!</div>
+      <button class="pm-close" id="pmClose">Continue →</button>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

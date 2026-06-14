@@ -1,4 +1,4 @@
-# 🪔 Where Every Festival Tells a Story
+# 🪔 Where Every Festival Tells a Story!
 
 > A cinematic digital experience celebrating the timeless festivals and cultural heritage of Tamil Nadu.
 

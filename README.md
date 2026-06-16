@@ -28,7 +28,7 @@ A world-class, award-inspired frontend website that takes visitors on a cinemati
 
 ---
 
-## 🚀 Deploy to GitHub Pages (Actions Mode)
+## 🚀 Deploy to GitHub Pages (Actions Mode)!
 
 ### Step 1 — Create Repo
 Name it exactly: `where-every-festival-tells-a-story`

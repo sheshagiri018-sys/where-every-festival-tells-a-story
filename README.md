@@ -55,7 +55,7 @@ Your site will be live at:
 
 ---
 
-## 📁 File Structure
+## 📁 File Structure🪄
 
 ```
 where-every-festival-tells-a-story/
@@ -73,7 +73,7 @@ where-every-festival-tells-a-story/
 
 ---
 
-## 🛠️ Tech Stack
+## 🛠️ Tech Stack🔗
 
 | Technology | Purpose |
 |---|---|
@@ -87,13 +87,13 @@ where-every-festival-tells-a-story/
 
 ---
 
-## ⚠️ Important — The `.nojekyll` File
+## ⚠️ Important — The `.nojekyll` File🪐
 
 The `.nojekyll` file in the root is **critical**. Without it, GitHub Pages runs Jekyll on your project and can break CSS/JS paths. Never delete this file.
 
 ---
 
-## 📜 Festivals Covered
+## 📜 Festivals Covered⭐
 
 | Festival | Season | Theme |
 |---|---|---|

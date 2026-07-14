@@ -6,7 +6,7 @@
 
 ---
 
-## ✨ About
+## ✨ About✨💫
 
 A world-class, award-inspired frontend website that takes visitors on a cinematic journey through the festivals of Tamil Nadu — Pongal, Karthigai Deepam, Navaratri, Deepavali, Tamil New Year, Chithirai Festival and more.
 
@@ -14,7 +14,7 @@ A world-class, award-inspired frontend website that takes visitors on a cinemati
 
 ---
 
-## 🎨 Features
+## 🎨 Features🌠🏆
 
 - 🌅 **Cinematic Hero** — animated canvas with temple silhouette, rising sun & flying birds
 - 🪔 **Interactive Pongal Pot** — milk rises and overflows with confetti celebration
